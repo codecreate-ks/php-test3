@@ -3,35 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class HelloController extends Controller
 {
 
-    public function __invoke(){
+    public function index(Request $request, Response $response){
 
 return <<<EOF
 <html>
 <head>
-<title>Hello</title>
+<title>Hello/Index</title>
 <style>
     body {
     font-size: 16px;
     color: #999;
     }
     h1 {
-    font-size: 100px;
+    font-size: 120px;
     text-align: right;
-    color: #eee;
-    margin: 0px 0px -50px 0px;
+    color: #fafafa;
+    margin: 0px 0px -120px 0px;
     }
 </style>
 </head>
 <body>
-    <h1>Single Action</h1>
-    <p>これは、シングルアクションコントラーラのアクションです。</p>
+    <h1>Hello</h1>
+    <h3>Request</h3>
+    <pre>{$request}</pre>
+    <h3>Response</h3>
+    <pre>{$response}</pre>
 </body>
 </html>
 EOF;
+
+        $response->setContent($html);
+        return $response;
 
     }
 }
