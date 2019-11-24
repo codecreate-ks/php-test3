@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 Route::get('hello', 'HelloController@index');
 Route::post('hello', 'HelloController@post');
+
+Route::get('contact', 'CodeCreateController@check');
+Route::post('contact', 'CodeCreateController@post');
