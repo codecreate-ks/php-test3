@@ -16,15 +16,16 @@
 </head>
 <body>
     <h1>Blade/Index</h1>
-    @isset ($msg)
-    <p>こんにちは、{{$msg}}さん。</p>
-    @else
-    <p>何か書いてください。</p>
-    @endisset
-    <form method="POST" action="/hello">
-        {{ csrf_field() }}
-        <input type="text" name="msg">
-        <input type="submit">
-    </form>
+    <ol>
+    @php
+    $counter = 0;
+    @endphp
+    @while ($counter < count($data))
+        <li>{{$data[$counter]}}</li>
+    @php
+    $counter++;
+    @endphp
+    @endwhile
+    </ol>
 </body>
 </html>
