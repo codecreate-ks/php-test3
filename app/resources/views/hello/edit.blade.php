@@ -1,19 +1,21 @@
 @extends('layouts.helloapp')
 
-@section('title','Index')
+@section('title','Edit')
 
 @section('menubar')
     @parent
-    新規作成ページ
+    更新ページ
 @endsection
 
 @section('content')
+    <?php var_dump($form) ?>
     <table>
-    <form action="/hello/add" method="post">
+    <form action="/hello/edit" method="post">
         {{ csrf_field() }}
-        <tr><th>name:</th><td><input type="text" name="name"></td></tr>
-        <tr><th>mail:</th><td><input type="text" name="mail"></td></tr>
-        <tr><th>age:</th><td><input type="text" name="age"></td></tr>
+        <input type="hidden" name="id" value="{{$form->id}}">
+        <tr><th>name:</th><td><input type="text" name="name" value="{{$form->name}}"></td></tr>
+        <tr><th>mail:</th><td><input type="text" name="mail" value="{{$form->mail}}"></td></tr>
+        <tr><th>age:</th><td><input type="text" name="age" value="{{$form->age}}"></td></tr>
         <tr><th></th><td><input type="submit" value="send"></td></tr>
     </form>
     </table>
