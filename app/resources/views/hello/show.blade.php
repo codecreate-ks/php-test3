@@ -4,17 +4,21 @@
 
 @section('menubar')
     @parent
-    削除ページ
+    詳細ページ
 @endsection
 
 @section('content')
-    <?php var_dump($item) ?>
-    <table>
-        <tr><th>id:</th><td>{{$item->id}}</td></tr>
-        <tr><th>name:</th><td>{{$item->name}}</td></tr>
-        <tr><th>mail:</th><td>{{$item->mail}}</td></tr>
-        <tr><th>age:</th><td>{{$item->age}}</td></tr>
-    </table>
+    <?php var_dump($items) ?>
+    @if ($items != null)
+        @foreach ($items as $item)
+        <table width="400px">
+            <tr>
+                <th width="50px">id:</th><td>{{$item->id}}</td>
+                <th width="50px">name:</th><td>{{$item->name}}</td>
+            </tr>
+        </table>
+        @endforeach
+    @endif
 @endsection
 
 @section('footer')
