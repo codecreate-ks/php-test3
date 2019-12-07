@@ -22,3 +22,6 @@ Route::post('hello', 'HelloController@post');
 
 Route::get('contact', 'CodeCreateController@check');
 Route::post('contact', 'CodeCreateController@post');
+
+Route::get('hello/add', 'HelloController@add');
+Route::post('hello/add', 'HelloController@create');
