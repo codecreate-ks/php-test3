@@ -43,8 +43,15 @@ class Person extends Model
         'age' => 'integer|min:0|max:150'
     );
 
-    public function board()
+    //hasOne
+    // public function board()
+    // {
+    //     return $this->hasOne('App\Board');
+    // }
+
+    //hasMany
+    public function boards()
     {
-        return $this->hasOne('App\Board');
+        return $this->hasMany('App\Board');
     }
 }

@@ -8,7 +8,6 @@
 @endsection
 
 @section('content')
-    <?php var_dump($items) ?>
     <table>
     <tr><th>Data</th></tr>
     @foreach ($items as $item)
@@ -17,6 +16,7 @@
         </tr>
     @endforeach
     </table>
+    <?php var_dump($items) ?>
 @endsection
 
 @section('footer')

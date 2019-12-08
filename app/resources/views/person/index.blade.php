@@ -14,14 +14,20 @@
         <tr>
             <td>{{$item->getData()}}</td>
             <td>
-            @if ($item->board != null)
-                {{$item->board->getData()}}
+            @if ($item->boards != null)
+                <table width="100%">
+                @foreach ($item->boards as $obj)
+                    <tr><td>{{$obj->getData()}}</td></tr>
+                @endforeach
+                </table>
             @endif
             </td>
         </tr>
     @endforeach
     </table>
-    <?php var_dump($items) ?>
+    <?php var_dump($items)?>
+    <?php echo '<br><br>'?>
+    <?php var_dump($obj) ?>
 @endsection
 
 @section('footer')
