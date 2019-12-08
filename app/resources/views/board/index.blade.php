@@ -1,6 +1,6 @@
 @extends('layouts.helloapp')
 
-@section('title','Person.Index')
+@section('title','Board.Index')
 
 @section('menubar')
     @parent
@@ -8,20 +8,15 @@
 @endsection
 
 @section('content')
+    <?php var_dump($items) ?>
     <table>
-    <tr><th>Person</th><th>Board</th></tr>
+    <tr><th>Data</th></tr>
     @foreach ($items as $item)
         <tr>
             <td>{{$item->getData()}}</td>
-            <td>
-            @if ($item->board != null)
-                {{$item->board->getData()}}
-            @endif
-            </td>
         </tr>
     @endforeach
     </table>
-    <?php var_dump($items) ?>
 @endsection
 
 @section('footer')
