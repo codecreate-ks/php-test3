@@ -10,7 +10,7 @@
 @section('content')
     <table>
     <tr><th>Person</th><th>Board</th></tr>
-    @foreach ($items as $item)
+    @foreach ($hasItems as $item)
         <tr>
             <td>{{$item->getData()}}</td>
             <td>
@@ -25,9 +25,18 @@
         </tr>
     @endforeach
     </table>
-    <?php var_dump($items)?>
+    <div style="margin:10px;"></div>
+    <table>
+    <tr><th>Person</th></tr>
+    @foreach ($noItems as $item)
+        <tr>
+            <td>{{$item->getData()}}</td>
+        </tr>
+    @endforeach
+    </table>
+    <?php var_dump($hasItems)?>
     <?php echo '<br><br>'?>
-    <?php var_dump($obj) ?>
+    <?php var_dump($noItems) ?>
 @endsection
 
 @section('footer')
