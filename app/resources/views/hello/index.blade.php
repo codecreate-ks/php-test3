@@ -1,5 +1,10 @@
-@extends('layouts.helloapp')
+<?php var_dump($items) ?>
 
+@extends('layouts.helloapp')
+<style>
+    .pagination { font-size: 14px; }
+    .pagination li { display: inline-block; }
+</style>
 @section('title','Index')
 
 @section('menubar')
@@ -8,7 +13,6 @@
 @endsection
 
 @section('content')
-    <?php var_dump($items) ?>
     <table>
     <tr><th>Name</th><th>Mail</th><th>Age</th></tr>
     @foreach ($items as $item)
@@ -19,6 +23,7 @@
         </tr>
     @endforeach
     </table>
+    {{ $items->links() }}
 @endsection
 
 @section('footer')
