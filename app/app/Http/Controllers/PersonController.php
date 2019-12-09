@@ -48,6 +48,7 @@ class PersonController extends Controller
         $person = new Person;
         $form = $request->all();
         unset($form['_token']);
+        $person->timestamps = false;//エラー回避のため
         $person->fill($form)->save();
         return redirect('/person');
     }
@@ -64,6 +65,7 @@ class PersonController extends Controller
         $person = Person::find($request->id);
         $form = $request->all();
         unset($form['_token']);
+        $person->timestamps = false;//エラー回避のため
         $person->fill($form)->save();
         return redirect('/person');
     }

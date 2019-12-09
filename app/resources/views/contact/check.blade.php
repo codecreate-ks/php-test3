@@ -5,6 +5,7 @@
     <title>Contact/Check</title>
 <body>
     <h1>お問い合わせ内容を確認</h1>
+    <p>お問い合わせ内容を確認してください。</p>
     <p>●お名前：{{$data['name']}}</p>
     <p>●メールアドレス：{{$data['email']}}</p>
     <p>●お問い合わせ内容</p>

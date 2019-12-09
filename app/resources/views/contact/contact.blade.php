@@ -28,16 +28,16 @@
         @endif
         <input type="text" name="name" value="{{old('name')}}">
 
+        <p>{{$data['email']}}</p>
         @if ($errors->has('email'))
         <p class="error">{{$errors->first('email')}}</p>
         @endif
-        <p>{{$data['email']}}</p>
         <input type="text" name="email" value="{{old('email')}}">
 
+        <p>{{$data['inquiry']}}</p>
         @if ($errors->has('inquiry'))
         <p class="error">{{$errors->first('inquiry')}}</p>
         @endif
-        <p>{{$data['inquiry']}}</p>
         <p>
             <textarea name="inquiry" id="" cols="30" rows="10">{{old('inquiry')}}</textarea>
         </p>
