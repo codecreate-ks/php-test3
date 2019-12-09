@@ -19,7 +19,7 @@ use App\Http\Middleware\HelloMiddleware;
 
 //CodeCreate課題用ルーティング
 Route::get('contact', 'ContactController@index');
-Route::post('contact', 'ContactController@index');
+Route::post('contact', 'ContactController@back');
 Route::get('contact/check', 'ContactController@backToIndex');
 Route::post('contact/check', 'ContactController@check');
 Route::get('contact/finish', 'ContactController@backToIndex');

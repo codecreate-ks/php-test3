@@ -13,7 +13,16 @@ class ContactController extends Controller
         return redirect('/contact');
     }
 
-    public function index(Request $request){
+    public function index(){
+        $data = [
+            'name'=>old('name'),
+            'email'=>old('email'),
+            'inquiry'=>old('inquiry')
+        ];
+        return view('contact.contact', ['data' => $data]);
+    }
+
+    public function back(Request $request){
         $name = $request->name;
         $email = $request->email;
         $inquiry = $request->inquiry;

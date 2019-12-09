@@ -26,20 +26,20 @@
         @if ($errors->has('name'))
         <p class="error">{{$errors->first('name')}}</p>
         @endif
-        <input type="text" name="name" value="{{old('name')}}">
+        <input type="text" name="name" value="{{$data['name']}}">
 
         <p>メールアドレス（必須）</p>
         @if ($errors->has('email'))
         <p class="error">{{$errors->first('email')}}</p>
         @endif
-        <input type="text" name="email" value="{{old('email')}}">
+        <input type="text" name="email" value="{{$data['email']}}">
 
         <p>お問い合わせ内容（必須）</p>
         @if ($errors->has('inquiry'))
         <p class="error">{{$errors->first('inquiry')}}</p>
         @endif
         <p>
-            <textarea name="inquiry" id="" cols="30" rows="10">{{old('inquiry')}}</textarea>
+            <textarea name="inquiry" id="" cols="30" rows="10">{{$data['inquiry']}}</textarea>
         </p>
         <input type="submit" value="確認画面へ">
     </form>
