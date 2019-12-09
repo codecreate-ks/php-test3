@@ -22,26 +22,26 @@
 
     <form method="POST" action="/contact/check">
         {{ csrf_field() }}
-        <p>{{$data['name']}}</p>
+        <p>お名前（必須）</p>
         @if ($errors->has('name'))
         <p class="error">{{$errors->first('name')}}</p>
         @endif
         <input type="text" name="name" value="{{old('name')}}">
 
-        <p>{{$data['email']}}</p>
+        <p>メールアドレス（必須）</p>
         @if ($errors->has('email'))
         <p class="error">{{$errors->first('email')}}</p>
         @endif
         <input type="text" name="email" value="{{old('email')}}">
 
-        <p>{{$data['inquiry']}}</p>
+        <p>お問い合わせ内容（必須）</p>
         @if ($errors->has('inquiry'))
         <p class="error">{{$errors->first('inquiry')}}</p>
         @endif
         <p>
             <textarea name="inquiry" id="" cols="30" rows="10">{{old('inquiry')}}</textarea>
         </p>
-        <input type="submit">
+        <input type="submit" value="確認画面へ">
     </form>
 </body>
 </html>

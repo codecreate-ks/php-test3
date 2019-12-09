@@ -9,15 +9,18 @@ use App\Http\Requests\ContactRequest;//フォームリクエストの使用
 
 class ContactController extends Controller
 {
-    public function backToIndex(){
+    public function backToIndex(Request $request){
         return redirect('/contact');
     }
 
-    public function index(){
+    public function index(Request $request){
+        $name = $request->name;
+        $email = $request->email;
+        $inquiry = $request->inquiry;
         $data = [
-            'name' => 'お名前',
-            'email' => 'メールアドレス',
-            'inquiry' => 'お問い合わせ内容'
+            'name'=>$name,
+            'email'=>$email,
+            'inquiry'=>$inquiry
         ];
         return view('contact.contact', ['data' => $data]);
     }

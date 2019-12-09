@@ -17,5 +17,12 @@
         <input type="hidden" name="inquiry" Value="{{$data['inquiry']}}">
         <input type="submit">
     </form>
+    <form method="POST" action="/contact">
+        {{ csrf_field() }}
+        <input type="hidden" name="name" value="{{$data['name']}}">
+        <input type="hidden" name="email" Value="{{$data['email']}}">
+        <input type="hidden" name="inquiry" Value="{{$data['inquiry']}}">
+        <input type="submit" value="戻る">
+    </form>
 </body>
 </html>
