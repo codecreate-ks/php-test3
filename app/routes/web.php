@@ -17,11 +17,18 @@ Route::get('/', function () {
 
 use App\Http\Middleware\HelloMiddleware;
 
+//CodeCreate課題用ルーティング
+Route::get('contact', 'CodeCreateController@index');
+Route::post('contact', 'CodeCreateController@check');
+Route::get('contact/check', 'CodeCreateController@backToIndex');
+Route::post('contact/check', 'CodeCreateController@check');
+Route::get('contact/finish', 'CodeCreateController@backToIndex');
+Route::post('contact/finish', 'CodeCreateController@done');
+
+
+//参考書Laravel入門用ルーティング
 Route::get('hello', 'HelloController@index');
 Route::post('hello', 'HelloController@post');
-
-Route::get('contact', 'CodeCreateController@check');
-Route::post('contact', 'CodeCreateController@post');
 
 Route::get('hello/add', 'HelloController@add');
 Route::post('hello/add', 'HelloController@create');
