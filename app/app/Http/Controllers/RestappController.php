@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Restdata;
+use App\Model\Restdata;
 
 class RestappController extends Controller
 {
