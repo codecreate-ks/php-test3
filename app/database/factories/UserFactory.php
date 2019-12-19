@@ -26,10 +26,10 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(App\Person::class, function (Faker $faker) {
+$factory->define(App\Model\Person::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'mail' => $faker->unique()->safeEmail,
         'age' => random_int(1,99),
     ];
 });

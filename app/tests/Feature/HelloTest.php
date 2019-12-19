@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\User;
-use App\Person;
+use App\Model\Person;
 
 class HelloTest extends TestCase
 {
@@ -17,7 +17,7 @@ class HelloTest extends TestCase
      */
 
     //p329の設定-一般的な値のテスト
-    // public function testHello()
+    // public function testHello1()
     // {
     //     $this->assertTrue(true);
 
@@ -31,9 +31,9 @@ class HelloTest extends TestCase
     //     $this->assertLessThan(100, $n);
     // }
 
+
     //p331-332の設定-指定アドレスにアクセスするテスト
-    // use DatabaseMigrations;
-    // public function testHello()
+    // public function testHello2()
     // {
     //     $this->assertTrue(true);
 
@@ -51,9 +51,12 @@ class HelloTest extends TestCase
     //     $response->assertStatus(404);
     // }
 
+
     //p334の設定-データベースのテスト
-    use DatabaseMigrations;
-    public function testHello()
+    //use DatabaseMigrations;これはLaravel5.4以前用のデータベースリセットのため使用不可
+
+    use RefreshDatabase;//Laravel5.5以降のデータベースリセット
+    public function testHello3()
     {
         //ダミーで利用するデータ
         factory(User::class)->create([
@@ -72,15 +75,15 @@ class HelloTest extends TestCase
         //ダミーで利用するデータ
         factory(Person::class)->create([
             'name' => 'XXX',
-            'email' => 'YYY@ZZZ.COM',
-            'password' => '123',
+            'mail' => 'YYY@ZZZ.COM',
+            'age' => '123',
         ]);
         factory(User::class, 10)->create();
 
         $this->assertDatabaseHas('people', [
             'name' => 'XXX',
-            'email' => 'YYY@ZZZ.COM',
-            'password' => '123',
+            'mail' => 'YYY@ZZZ.COM',
+            'age' => '123',
         ]);
     }
 }

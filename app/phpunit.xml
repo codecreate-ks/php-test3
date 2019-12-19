@@ -37,6 +37,7 @@
         <server name="APP_PACKAGES_CACHE" value="bootstrap/cache/packages.phpunit.php"/>
         <server name="APP_ROUTES_CACHE" value="bootstrap/cache/routes.phpunit.php"/>
         <server name="APP_EVENTS_CACHE" value="bootstrap/cache/events.phpunit.php"/>
-        <env name ="default">
+        <!-- データベーステスト用追記 name属性、value属性必須 value属性には新規で作ったテスト用のデータベースを指定-->
+        <env name="DB_DATABASE" value="unittest"/>
     </php>
 </phpunit>
