@@ -17,13 +17,16 @@ Route::get('/', function () {
 
 use App\Http\Middleware\HelloMiddleware;
 
-//CodeCreate課題用ルーティング
+//CodeCreate課題1〜3用ルーティング
 Route::get('contact', 'ContactController@index');
 Route::post('contact', 'ContactController@back');
 Route::get('contact/check', 'ContactController@backToIndex');
 Route::post('contact/check', 'ContactController@check');
 Route::get('contact/finish', 'ContactController@backToIndex');
 Route::post('contact/finish', 'ContactController@done');
+
+//CodeCreate最終課題用ルーティング
+Route::get('ecshop', 'EcShopController@index');
 
 
 //参考書Laravel入門用ルーティング
