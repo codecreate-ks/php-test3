@@ -13,7 +13,14 @@
         <p>{{$item->item_name}}</p>
         <p>{{$item->price}}円</p>
         <p>
-            <a href="/ecshop/cart">カートに追加する</a>
+            <form action="/ecshop/cart" method="post">
+                {{ csrf_field() }}
+                <input type="hidden" name="item_id" value="{{$item->item_id}}">
+                <input type="hidden" name="item_name" value="{{$item->item_name}}">
+                <input type="hidden" name="price" value="{{$item->price}}">
+                <input type="hidden" name="image" value="{{$item->image}}">
+                <input type="submit" value="カートに追加する">
+            </form>
         </p>
     </div>
     @endforeach

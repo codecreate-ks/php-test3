@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\Model\EcShop;
+use App\Model\Cart;
 use App\Http\Requests\EcShopRequest;//フォームリクエストの使用
 
 class EcShopController extends Controller
@@ -70,8 +71,23 @@ class EcShopController extends Controller
         }
     }
 
-    public function cart(Request $request)
+    public function cartShow(Request $request)
     {
         return view('ecshop.cart');
+    }
+
+    public function cartAdd(Request $request)
+    {
+        $user_id = Auth::id();
+        Cart::create([
+            'user_id'=>$user_id,
+            'item_id'=>$request->item_id,
+            'item_name'=>$request->item_name,
+            'price'=>$request->price,
+            'image'=>$request->image
+        ]);
+        // $items = Cart::where('user_id', $user_id)->get()->paginate(4);
+        $items = Cart::where('user_id', $user_id)->get();
+        return view('ecshop.cart', ['items' => $items]);
     }
 }

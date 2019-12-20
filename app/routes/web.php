@@ -37,7 +37,8 @@ Route::get('ecshop/logout', 'EcShopController@logout');
 Route::get('ecshop/register', 'EcShopController@getRegister');
 Route::post('ecshop/register-finish', 'EcShopController@postRegisterDone');
 
-Route::get('ecshop/cart', 'EcShopController@cart');
+Route::get('ecshop/cart', 'EcShopController@cartShow');
+Route::post('ecshop/cart', 'EcShopController@cartAdd');
 
 
 
