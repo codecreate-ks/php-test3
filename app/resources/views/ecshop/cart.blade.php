@@ -9,7 +9,7 @@
     @endif
     <a href="/ecshop">商品一覧に戻る</a>
 
-    @foreach ($session_data as $session_item)
+    @foreach ($session_data['items'] as $session_item)
     <div class="goods">
         <img class="goods_img" src="/img/{{$session_item->image}}" alt="{{$session_item->item_name}}の写真">
         <p>{{$session_item->item_name}}</p>
@@ -17,5 +17,6 @@
     </div>
     @endforeach
     {{-- {{ $items->links() }} --}}
-    <a href="">購入する</a>
+    <p>合計金額：{{$session_data['sum']}}</p>
+    <a href="/ecshop/purchaseComplete">購入する</a>
 @endsection

@@ -40,6 +40,9 @@ Route::post('ecshop/register-finish', 'EcShopController@postRegisterDone');
 Route::get('ecshop/cart', 'EcShopController@cartShow');
 Route::post('ecshop/cart', 'EcShopController@cartAdd');
 
+Route::get('ecshop/purchaseComplete', 'EcShopController@purchaseComplete');
+
+
 
 
 //参考書Laravel入門用ルーティング

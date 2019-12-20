@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Model\EcShop;
 use App\Model\Cart;
@@ -74,7 +75,7 @@ class EcShopController extends Controller
     public function cartShow(Request $request)
     {
         if (Auth::check()){
-            $sesdata = $request->session()->get('items');
+            $sesdata = $request->session()->get('param');
             if(isset($sesdata)){
                 return view('ecshop.cart', ['session_data' => $sesdata]);
             } else {
@@ -97,7 +98,20 @@ class EcShopController extends Controller
         ]);
         // $items = Cart::where('user_id', $user_id)->get()->paginate(4);
         $items = Cart::where('user_id', $user_id)->get();
-        $request->session()->put('items', $items);
+        $sum = Cart::where('user_id', $user_id)->sum('price');
+        $param = [
+            'items' => $items,
+            'sum' => $sum,
+        ];
+        $request->session()->put('param', $param);
         return redirect('/ecshop/cart');
+    }
+
+    public function purchaseComplete(Request $request)
+    {
+        $user_id = Auth::id();
+        DB::table('cart')->where('user_id', $user_id)->delete();
+        $request->session()->forget('param');
+        return view('ecshop. purchaseComplete');
     }
 }
