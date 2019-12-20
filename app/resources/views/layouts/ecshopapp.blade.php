@@ -8,8 +8,8 @@
     <header class="header">
         <p>ShopCreate</p>
         @if (Auth::check())
-        <a href="">
-            <img class="header_icon" class="listImage_img" src="/img/icon_cart.svg" alt="カート">
+        <a href="/ecshop/cart">
+            <img class="header_icon" class="listImage_img" src="/img/icon_cart.svg" alt="カートを見る">
         </a>
         @endif
     </header>

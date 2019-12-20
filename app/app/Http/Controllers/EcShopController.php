@@ -73,7 +73,16 @@ class EcShopController extends Controller
 
     public function cartShow(Request $request)
     {
-        return view('ecshop.cart');
+        if (Auth::check()){
+            $sesdata = $request->session()->get('items');
+            if(isset($sesdata)){
+                return view('ecshop.cart', ['session_data' => $sesdata]);
+            } else {
+                return view('ecshop.cartEmpty');
+            }
+        } else {
+            return redirect('/ecshop');
+        }
     }
 
     public function cartAdd(Request $request)
@@ -88,6 +97,7 @@ class EcShopController extends Controller
         ]);
         // $items = Cart::where('user_id', $user_id)->get()->paginate(4);
         $items = Cart::where('user_id', $user_id)->get();
-        return view('ecshop.cart', ['items' => $items]);
+        $request->session()->put('items', $items);
+        return redirect('/ecshop/cart');
     }
 }

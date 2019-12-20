@@ -9,11 +9,11 @@
     @endif
     <a href="/ecshop">商品一覧に戻る</a>
 
-    @foreach ($items as $item)
+    @foreach ($session_data as $session_item)
     <div class="goods">
-        <img class="goods_img" src="/img/{{$item->image}}" alt="{{$item->item_name}}の写真">
-        <p>{{$item->item_name}}</p>
-        <p>{{$item->price}}円</p>
+        <img class="goods_img" src="/img/{{$session_item->image}}" alt="{{$session_item->item_name}}の写真">
+        <p>{{$session_item->item_name}}</p>
+        <p>{{$session_item->price}}円</p>
     </div>
     @endforeach
     {{-- {{ $items->links() }} --}}
