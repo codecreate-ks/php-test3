@@ -1,4 +1,3 @@
-
 <?php var_dump($data) ?><!--確認用-->
 
 <html>

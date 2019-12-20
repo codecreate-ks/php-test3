@@ -25,8 +25,17 @@ Route::post('contact/check', 'ContactController@check');
 Route::get('contact/finish', 'ContactController@backToIndex');
 Route::post('contact/finish', 'ContactController@done');
 
+
 //CodeCreate最終課題用ルーティング
 Route::get('ecshop', 'EcShopController@index');
+
+Route::get('ecshop/login', 'EcShopController@getLogin');
+Route::post('ecshop/login', 'EcShopController@postLogin');
+
+Route::get('ecshop/logout', 'EcShopController@Logout');
+
+Route::get('ecshop/register', 'EcShopController@getRegister');
+Route::post('ecshop/register-finish', 'EcShopController@postRegisterDone');
 
 
 //参考書Laravel入門用ルーティング
