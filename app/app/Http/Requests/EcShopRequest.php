@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ContactRequest extends FormRequest
+class EcShopRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,8 +13,8 @@ class ContactRequest extends FormRequest
      */
     public function authorize()
     {
-        //パスがecshop/registerのときのみバリデーション。それ以外は不許可。
-        if ( $this->path() == 'ecshop/register'){
+        //パスがecshop/registerからのpost送信のときのみリクエスト、バリデーション。それ以外は不許可。
+        if ( $this->path() == 'ecshop/register-finish'){
             return true;
         }else{
             return false;
@@ -30,9 +30,9 @@ class ContactRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'email_verified_at' => 'same:email',
-            'password' => 'required|alpha-dash|alpha-num|min:8'
+            'password' => 'required|min:8|regex:/^[0-9a-zA-Z]*$/',
         ];
     }
 
@@ -42,10 +42,11 @@ class ContactRequest extends FormRequest
             'name.required' => 'お名前は必ず入力してください。',
             'email.required' => 'メールアドレスは必ず入力してください。',
             'email.email' => 'メールアドレスを正しく入力してください。',
-            'email_verified_at' => '上記メールアドレスと一致しません。',
+            'email.unique' => '別のメールアドレスを指定してください。',
+            'email_verified_at.same' => '上記メールアドレスと一致しません。',
             'password.required' => 'パスワードは必ず入力してください。',
-            'password.alpha-dash|alpha-num' => 'パスワードで使える文字は半角英数字とハイフン（-）、アンダースコア（_）です。',
-            'password.min:8' => 'パスワードは8文字以上で設定してください。',
+            'password.min' => 'パスワードは8文字以上で設定してください。',
+            'password.regex' => 'パスワードで使える文字は半角英数字のみです。',
         ];
     }
 }

@@ -13,7 +13,6 @@ use App\Http\Requests\EcShopRequest;//フォームリクエストの使用
 
 class EcShopController extends Controller
 {
-
     public function index(Request $request)
     {
         $items = EcShop::paginate(4);
@@ -61,6 +60,13 @@ class EcShopController extends Controller
             'email_verified_at'=>$request->email_verified_at,
             'password' => Hash::make($request->password),
         ]);
-        return view('ecshop.registerDone');
+        $email = $request->email;
+        $password = $request->password;
+        if (Auth::attempt(['email' => $email, 'password' => $password])){
+            return view('ecshop.registerDone');
+        } else {
+            $msg = 'ログインに失敗しました。';
+            return view('ecshop.login', ['message' => $msg]);
+        }
     }
 }
