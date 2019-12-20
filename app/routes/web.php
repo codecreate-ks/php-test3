@@ -42,7 +42,10 @@ Route::post('ecshop/cart', 'EcShopController@cartAdd');
 
 Route::get('ecshop/purchaseComplete', 'EcShopController@purchaseComplete');
 
-
+Route::get('ecshop/mailable/preview', function (){
+    //メールプレビュー用
+    return new App\Mail\autoSendMail();
+});
 
 
 //参考書Laravel入門用ルーティング

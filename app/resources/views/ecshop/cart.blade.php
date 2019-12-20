@@ -4,8 +4,10 @@
 
 @section('content')
     @if (Auth::check())
-    <p>こんにちは。{{Auth::user()->name}}さん。</p>
-    <p><a href="/ecshop/logout">ログアウトする</a></p>
+    <div class="logined">
+        <p>こんにちは。{{Auth::user()->name}}さん。</p>
+        <p><a href="/ecshop/logout">ログアウトする</a></p>
+    </div>
     @endif
     <a href="/ecshop">商品一覧に戻る</a>
 
@@ -17,6 +19,6 @@
     </div>
     @endforeach
     {{-- {{ $items->links() }} --}}
-    <p>合計金額：{{$session_data['sum']}}</p>
+    <p>合計金額：{{$session_data['sum']}}円</p>
     <a href="/ecshop/purchaseComplete">購入する</a>
 @endsection
