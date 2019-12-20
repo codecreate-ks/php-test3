@@ -37,7 +37,7 @@ class EcShopController extends Controller
         }
     }
 
-    public function Logout(Request $request)
+    public function logout(Request $request)
     {
         if (Auth::check()){
             Auth::logout();
@@ -68,5 +68,10 @@ class EcShopController extends Controller
             $msg = 'ログインに失敗しました。';
             return view('ecshop.login', ['message' => $msg]);
         }
+    }
+
+    public function cart(Request $request)
+    {
+        return view('ecshop.cart');
     }
 }

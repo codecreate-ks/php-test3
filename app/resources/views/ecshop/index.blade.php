@@ -12,6 +12,9 @@
         <img class="goods_img" src="/img/{{$item->image}}" alt="{{$item->item_name}}の写真">
         <p>{{$item->item_name}}</p>
         <p>{{$item->price}}円</p>
+        <p>
+            <a href="/ecshop/cart">カートに追加する</a>
+        </p>
     </div>
     @endforeach
     {{ $items->links() }}

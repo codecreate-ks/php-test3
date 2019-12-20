@@ -32,10 +32,13 @@ Route::get('ecshop', 'EcShopController@index');
 Route::get('ecshop/login', 'EcShopController@getLogin');
 Route::post('ecshop/login', 'EcShopController@postLogin');
 
-Route::get('ecshop/logout', 'EcShopController@Logout');
+Route::get('ecshop/logout', 'EcShopController@logout');
 
 Route::get('ecshop/register', 'EcShopController@getRegister');
 Route::post('ecshop/register-finish', 'EcShopController@postRegisterDone');
+
+Route::get('ecshop/cart', 'EcShopController@cart');
+
 
 
 //参考書Laravel入門用ルーティング
