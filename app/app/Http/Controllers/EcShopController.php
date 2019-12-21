@@ -38,6 +38,15 @@ class EcShopController extends Controller
         $password = $request->password;
         //ログイン認証
         if (Auth::attempt(['email' => $email, 'password' => $password])){
+            //カート情報の取得とセッションの使用
+            $user_id = Auth::id();
+            $items = Cart::where('user_id', $user_id)->get();
+            $sum = Cart::where('user_id', $user_id)->sum('price');
+            $param = [
+                'items' => $items,
+                'sum' => $sum,
+            ];
+            $request->session()->put('param', $param);
             return redirect('/ecshop');
         } else {
             $msg = 'ログインに失敗しました。';
@@ -83,10 +92,10 @@ class EcShopController extends Controller
     //カートの中を表示
     public function cartShow(Request $request)
     {
-        $sesdata = $request->session()->get('param');
+        $session_data = $request->session()->get('param');
         //カート内の商品の有無をチェック
-        if(isset($sesdata)){
-            return view('ecshop.cart', ['session_data' => $sesdata]);
+        if($session_data['sum'] != 0){
+            return view('ecshop.cart', ['session_data' => $session_data]);
         } else {
             return view('ecshop.cartEmpty');
         }
@@ -105,13 +114,9 @@ class EcShopController extends Controller
                 'price'=>$request->price,
                 'image'=>$request->image
             ]);
-            //ログイン中のユーザーの商品情報のみ取得
+            //カート情報の取得とセッションの使用
             $items = Cart::where('user_id', $user_id)->get();
-            // $items = Cart::where('user_id', $user_id)->get()->paginate(4);//paginate(4)をつけるとエラー
-
-            //ログイン中のユーザーの商品の合計金額を取得
             $sum = Cart::where('user_id', $user_id)->sum('price');
-            //商品情報と合計金額をまとめてセッションを使用
             $param = [
                 'items' => $items,
                 'sum' => $sum,
@@ -127,14 +132,15 @@ class EcShopController extends Controller
     //購入、メール送信
     public function purchaseComplete(Request $request)
     {
-        //カートの中味の取得
-        $sesdata = $request->session()->get('param');
+        //カート情報の取得
+        $session_data = $request->session()->get('param');
         //ログインユーザー情報の取得
         $user = Auth::user();
         //メールの送信
         $name = $user->name;
+        $text = 'ありがとうございます。';
         $to = $user->email;
-        Mail::to($to)->send(new autoSendMail($name));
+        // Mail::to($to)->send(new autoSendMail($name, $text, $session_data));//メール送信は実際のサーバーで
         //ログインユーザーの商品情報をcartテーブルから消去、セッションも消去
         $user_id = Auth::id();
         DB::table('cart')->where('user_id', $user_id)->delete();
