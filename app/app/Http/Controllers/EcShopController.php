@@ -116,6 +116,7 @@ class EcShopController extends Controller
             ]);
             //カート情報の取得とセッションの使用
             $items = Cart::where('user_id', $user_id)->get();
+            // $items = Cart::where('user_id', $user_id)->get()->paginate(4);//エラー
             $sum = Cart::where('user_id', $user_id)->sum('price');
             $param = [
                 'items' => $items,
